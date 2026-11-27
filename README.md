@@ -1,5 +1,11 @@
 # forense
 
+> **English:** a guided Windows menu (WSL, CPU-only, no GPU needed) for
+> checking whether a photo was manipulated or AI-generated. It runs TruFor,
+> CAT-Net, an AI-image detector, ExifTool and C2PA checks, keeps a SHA-256
+> chain of custody, and explains after every step what the result does and
+> does not mean. Interface and docs are in Spanish.
+
 Menú para Windows que guía el análisis forense de una foto (por ejemplo, una
 foto de prensa sospechosa) con herramientas abiertas, en una PC sin placa de
 video. Corre los modelos dentro de WSL y cuida la cadena de custodia: copia el
