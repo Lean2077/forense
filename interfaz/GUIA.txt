@@ -1,0 +1,60 @@
+=====================================================================
+  GUÍA DE BUEN USO
+=====================================================================
+
+ORDEN DE TRABAJO (el menú sigue este orden)
+  1. Crear o abrir el caso.
+  2. Agregar evidencia: se copia el ORIGINAL a original\ (queda en
+     solo lectura), se calcula su SHA-256 y se hace la copia de trabajo.
+     Todo análisis corre sobre trabajo\, nunca sobre original\.
+  3. Metadatos (ExifTool) y procedencia C2PA: rápidos, hacelos primero.
+  4. TruFor enmascarado (ignora logos, cintillos y marcas de agua).
+  5. Contraste: TruFor oficial (trae mapa de confianza y score) y
+     CAT-Net (trazas de compresión JPEG).
+  6. Detector de IA con dos backends.
+  7. Verificar integridad antes de cerrar: los hashes de trabajo\
+     tienen que seguir iguales a los del original.
+  Después, fuera de esta herramienta: búsqueda inversa y
+  geolocalización. Ningún modelo sabe si la foto es de quien dicen.
+
+ANTES DE EMPEZAR
+  - Conseguí la descarga ORIGINAL del sitio, nunca una miniatura ni
+    una captura de pantalla. WhatsApp, redes y CDNs recomprimen y
+    borran las trazas que buscan TruFor y CAT-Net.
+  - No abras los originales con visores que "optimizan" o guardan.
+  - No uses la vista previa del Explorador sobre original\.
+  - Cerrá Docker y programas pesados: cada modelo usa 3-4 GB de RAM.
+    Si un análisis se corta solo, casi siempre es falta de memoria.
+
+TIEMPOS EN ESTE EQUIPO (sin GPU)
+  TruFor enmascarado  ~2 min por imagen
+  TruFor oficial      ~1 min por imagen
+  Detector IA ultra   ~2 min por lote chico
+
+CÓMO LEER LOS RESULTADOS SIN ENGAÑARTE
+  - El score de TruFor NO está calibrado para fotos de prensa.
+    Un 0,4 no significa "40% falsa". Usalo como ranking relativo entre
+    imágenes del MISMO caso (resumen_scores.txt viene ordenado).
+  - Mapa de anomalía: señala lo más raro de la escena, no
+    necesariamente lo pegado. Miralo SIEMPRE junto al mapa de
+    confianza: donde la confianza es negra, el mapa no vale.
+  - El modo enmascarado (-idc) solo da mapa, sin confianza ni score.
+    Por eso se contrasta con el TruFor oficial.
+  - CAT-Net solo sirve con JPEG. Delata recortes pegados que venían de
+    otro JPEG con distinta calidad de compresión.
+  - Detector de IA: probabilidad entre 0,45 y 0,55 = evidencia débil.
+    Compará siempre dos backends. En la prueba de instalación NINGÚN
+    backend detectó la imagen IA de ejemplo: calibralo con material
+    propio (imágenes reales e IA conocidas) antes de fiarte.
+    Si la imagen pasó por redes sociales, desconfiá del resultado.
+  - C2PA: si NO trae credenciales no significa nada (casi nadie las
+    usa). Si las trae, leé la cadena de ediciones y el software.
+  - Ningún resultado es prueba por sí solo. Un informe serio dice qué
+    herramienta, qué versión, qué parámetros y qué limitaciones.
+
+CADENA DE CUSTODIA
+  - registro.txt del caso anota cada acción con fecha, hora y usuario.
+  - hashes.txt guarda el SHA-256 de cada original al ingresar.
+  - No borres ni edites registro.txt ni hashes.txt a mano.
+
+=====================================================================

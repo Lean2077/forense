@@ -1,0 +1,28 @@
+diff --git a/CAT-Net/test.py b/CAT-Net/test.py
+index 6054ba0..4c44daa 100644
+--- a/CAT-Net/test.py
++++ b/CAT-Net/test.py
+@@ -118,7 +118,7 @@ else:
+     raise ValueError("Model file is not specified.")
+ 
+ print('=> loading model from {}'.format(model_state_file))
+-checkpoint = torch.load(model_state_file, weights_only=False)
++checkpoint = torch.load(model_state_file, map_location=device, weights_only=False)
+ print("Epoch: {}".format(checkpoint['epoch']))
+ 
+ exec(f"from lib.models.{config.MODEL.NAME} import get_seg_model")
+@@ -178,10 +178,10 @@ with torch.no_grad():
+ 
+         try:
+             size = label.size()
+-            image = image.cuda()
+-            label = label.long().cuda()
+-            qtable = qtable.cuda()
+-            cover = cover.cuda()
++            image = image.to(device)
++            label = label.long().to(device)
++            qtable = qtable.to(device)
++            cover = cover.to(device)
+             model.eval()
+ 
+             print(f"Processing {index+1}/{len(testloader)}: {filename_out}")

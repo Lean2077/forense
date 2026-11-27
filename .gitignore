@@ -1,0 +1,15 @@
+# Lista blanca: solo se publica lo propio. Casos, pesos, herramientas de terceros
+# y cualquier archivo nuevo quedan afuera salvo que se agreguen acá a propósito.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/COMANDOS.md
+!/FORENSE.cmd
+!/instalar.sh
+!/interfaz/
+!/parches/
+!/requisitos/
+__pycache__/
+.env*
